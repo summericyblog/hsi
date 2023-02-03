@@ -78,6 +78,7 @@ def append_ma():
     yesterday_close = data['Close'].shift(1)
     data['open_ret'] = (data['Open'] - yesterday_close) / yesterday_close
     data['day_ret'] = (data['Close'] - data['Open']) / data['Open']
+    data['ret'] = (data['Close'] - data['Close'].shift(1)) / data['Close'].shift(1)
     for i in intervals:
         open_name = 'ma_close_' + str(i)
         data[open_name] = ts_mean(data['Close'], i)
